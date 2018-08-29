@@ -32,15 +32,15 @@
             </div>
             <div class="form-group">
                 <label for="">Launch Targeted Tactic on This Page: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. www.example.com/cart.html"></span> </label>
-                <input type="text" class="form-control" id="launchPage" name="launchPage" required>
+                <input type="text" class="form-control" id="TTlaunchPage" name="TTlaunchPage" required>
             </div>
             <div class="form-group">
                 <label for="">Link Destination: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="This is the page where you want to redirect users after clicking the CTA. Ex. www.example.com/checkout.html"></span> </label>
-                <input type="text" class="form-control" id="CTAlinkDestination" name="CTAlinkDestination" required>
+                <input type="text" class="form-control" id="TTlinkDestination" name="TTlinkDestination" required>
             </div>
             <div class="form-group">
                 <label for="">Targeted Tactic Background Image: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Image that you want to display on the Targeted Tactic window."></span> </label>
-                <input type="file" name="TTimage">
+                <input type="file" name="eventImage">
             </div>
             <button type="submit" class="btn btn-success" style="margin:auto;display:block"> Create TT </button>
         </form>
