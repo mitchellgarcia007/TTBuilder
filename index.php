@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Targeted Tactic Builder</title>
+  <title>TT Builder</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,57 +17,72 @@
 <nav class="navbar navbar-inverse" style="border-radius:0px"> 
   <div class="container-fluid">
     <div class="navbar-header" style="width:100%">
-        <a class="navbar-brand" href="/">Targeted Tactic Builder</a>
+        <a class="navbar-brand" href="/">TT Builder</a>
+        <a class="navbar-brand" href="createTTform.php" style="float:right;color:white"> Create TT </a>
     </div>
   </div>
 </nav>
 
 <div class="container">
-  <h3 class="text-center"> Create Your Targeted Tactic </h3>
-    <div id="divForm">
-        <form id="createTT" action="createTT.php" method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="">Targeted Tactic Name: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. 10% Off on Shoes"></span> </label>
-                <input type="text" class="form-control" id="TTname" name="TTname" required>
-            </div>
-            <div class="form-group">
-                <label for="">Launch Targeted Tactic on This Page: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. www.example.com/cart.html"></span> </label>
-                <input type="text" class="form-control" id="TTlaunchPage" name="TTlaunchPage" required>
-            </div>
-            <div class="form-group">
-                <label for="">Link Destination: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="This is the page where you want to redirect users after clicking the CTA. Ex. www.example.com/checkout.html"></span> </label>
-                <input type="text" class="form-control" id="TTlinkDestination" name="TTlinkDestination" required>
-            </div>
-            <div class="form-group">
-                <label for="">Targeted Tactic Background Image: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Image that you want to display on the Targeted Tactic window."></span> </label>
-                <input type="file" name="eventImage">
-            </div>
-            <button type="submit" class="btn btn-success" style="margin:auto;display:block"> Create TT </button>
-        </form>
-    </div>
+  <h3 class="text-center"> All TTs</h3>
+
+    <table class="table table-hover table-responsive" style="margin-top:50px" id="myTable">
+        <thead class="hidden">
+        <tr>
+            <th class="text-center">Image</th>
+            <th>TT Info.</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <?php
+            $sql = " SELECT * FROM TTinfo ORDER BY dateCreated DESC ";
+            $result = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)){
+                $id = trim($row["id"]);
+                $active = trim($row["active"]);
+                if($active == 1){
+                    $active = "Yes";
+                }
+                else{
+                    $active = "No";
+                }
+                $dateCreated = date_create($row["dateCreated"]);
+                $dateCreated_formatted = date_format($dateCreated, 'm/d/Y h:i:sa');
+                $TTname = trim($row["TTname"]);
+                $TTlaunchPage = trim($row["TTlaunchPage"]);
+                $TTlinkDestination = trim($row["TTlinkDestination"]);
+                $image = trim($row["image"]);
+
+            
+                echo "<tr>";
+                    echo "<td class='text-center hidden-xs' style='vertical-align: middle;'><img src='img/$image' style='max-width:200px'></td>";
+                    echo "<td style='vertical-align: middle;'>";
+                        echo "<p class='visible-xs'><img src='img/$image' style='max-width:200px;display:block;margin:20px auto'></p>";
+                        echo "<p><strong>TT Name:</strong> $TTname </p>";
+                        echo "<p><strong>ID:</strong> $id </p>";
+                        echo "<p><strong>Active:</strong> $active </p>";
+                        echo "<p><strong>Date Created:</strong> $dateCreated_formatted </p>";
+                        echo "<p><strong>Launching Page:</strong> <a href='$TTlaunchPage' target='_blank'>$TTlaunchPage</a> </p>";
+                        echo "<p><strong>Destination Page:</strong> <a href='$TTlinkDestination' target='_blank'>$TTlinkDestination</a>  </p>";
+                        echo "<p><strong>JS Tag:</strong> <figure><pre><code>&lt;script src='http://ttbuilder.mitchellgarcia.net/js/js.php?id=$id'&gt;&lt;/script&gt;</code></pre></figure> </p>";
+                        echo "<a href='#' class='btn btn-success' role='button'> Edit TT </a>";
+                    echo "</td>";
+                echo "</tr>";
+                
+            }
+            if(!$id){
+                echo "<tr>";
+                    echo "<td></td>";
+                    echo "<td> <h1 class='text-center'> Click <a src='createTTform.php'>here</a> to create a TT. </h1> </td>";
+                echo "</tr>";
+            }
+        ?>
+        
+        </tbody>
+    </table>
+
 </div>
-
-<style>
-#divForm{
-    margin: 50px auto;
-    max-width: 700px;
-    height: auto;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 3px;
-    padding: 60px 30px 60px 30px;
-}
-</style>
-
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-
-    $("form").submit(function(e){
-        $( "#createTT" ).submit();
-    });
-
-});
-</script>
 
 </body>
 </html>

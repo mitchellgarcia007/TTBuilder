@@ -63,7 +63,7 @@ $(document).ready(function(){
         $(".usi_top_div").mouseenter(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
-                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:100%"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block" role="button">Go to Promotion</a></div></div></div></div>');
+                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:100%"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a></div></div></div></div>');
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
