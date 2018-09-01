@@ -1,8 +1,18 @@
 <?php
+
+    // Make sure ID exists
     if(!$_GET["id"]){
-        die("MIssing id");
+        die("Missing ID");
     }
 
+    // Get Clients URL info
+    $usi_page_URL = $_SERVER['HTTP_REFERER'];
+
+    // Get Clients Host info
+    $referer = parse_url($_SERVER['HTTP_REFERER']);
+    $referer = $referer['host'];
+
+    // Connection to DB
     include $_SERVER['DOCUMENT_ROOT']."/connection.php";
     
     $id = $_GET["id"];
@@ -17,16 +27,23 @@
         $image = trim($row["image"]);
     }
 
+    // Verufy that TT is active
     if($active != 1){
         die("TT not active");
     }
 
-    
-    $usi_page_URL = $_SERVER['HTTP_REFERER'];
-
-    if($usi_page_URL != $TTlaunchPage){
-        die("Not launch page");
+    // This is for Test.php
+    if($referer == "ttbuilder.mitchellgarcia.net"){
+        $TTlinkDestination = "http://ttbuilder.mitchellgarcia.net/test.php?id=".$id;
     }
+    else{
+        // Make sure we will launch the TT on the correct pages
+        if($usi_page_URL != $TTlaunchPage){
+            die("Not launch page");
+        }
+    }
+
+
 ?>
 
 $(document).ready(function(){
@@ -63,7 +80,7 @@ $(document).ready(function(){
         $(".usi_top_div").mouseenter(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
-                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:100%"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a></div></div></div></div>');
+                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:auto"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a></div></div></div></div>');
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";

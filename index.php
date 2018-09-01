@@ -19,6 +19,7 @@
     <div class="navbar-header" style="width:100%">
         <a class="navbar-brand" href="/">TT Builder</a>
         <a class="navbar-brand" href="createTTform.php" style="float:right;color:white"> Create TT </a>
+        <a class="navbar-brand" href="/" style="float:right;color:white"> Home </a>
     </div>
   </div>
 </nav>
@@ -56,17 +57,18 @@
 
             
                 echo "<tr>";
-                    echo "<td class='text-center hidden-xs' style='vertical-align: middle;'><img src='img/$image' style='max-width:200px'></td>";
+                    echo "<td class='text-center hidden-xs' style='vertical-align: middle;'> <img src='img/$image' style='max-width:200px;margin-bottom:10px'> <br> <a href='#' class='btn btn-success' role='button'> Edit TT </a> <a href='test.php?id=$id' class='btn btn-primary' role='button' style='margin-left:10px'> Test TT </a> </td>";
                     echo "<td style='vertical-align: middle;'>";
-                        echo "<p class='visible-xs'><img src='img/$image' style='max-width:200px;display:block;margin:20px auto'></p>";
+                        echo "<p class='visible-xs text-center'><img src='img/$image' style='max-width:200px;display:block;margin:10px auto'> <br> <a href='#' class='btn btn-success' role='button'> Edit TT </a> <a href='test.php?id=$id' class='btn btn-primary' role='button' style='margin-left:10px'> Test TT </a> <br><br></p>";
                         echo "<p><strong>TT Name:</strong> $TTname </p>";
                         echo "<p><strong>ID:</strong> $id </p>";
                         echo "<p><strong>Active:</strong> $active </p>";
                         echo "<p><strong>Date Created:</strong> $dateCreated_formatted </p>";
                         echo "<p><strong>Launching Page:</strong> <a href='$TTlaunchPage' target='_blank'>$TTlaunchPage</a> </p>";
                         echo "<p><strong>Destination Page:</strong> <a href='$TTlinkDestination' target='_blank'>$TTlinkDestination</a>  </p>";
-                        echo "<p><strong>JS Tag:</strong> <figure><pre><code>&lt;script src='http://ttbuilder.mitchellgarcia.net/js/js.php?id=$id'&gt;&lt;/script&gt;</code></pre></figure> </p>";
-                        echo "<a href='#' class='btn btn-success' role='button'> Edit TT </a>";
+                        echo "<p><strong>JS Tag:</strong> <figure><pre style='max-width:580px'><code>&lt;script src='http://ttbuilder.mitchellgarcia.net/js/js.php?id=$id'&gt;&lt;/script&gt;</code></pre></figure></p>";
+                        //echo "<a href='#' class='btn btn-success' role='button'> Edit TT </a>";
+                        //echo "<a href='test.php?id=$id' class='btn btn-primary' role='button' style='margin-left:10px'> Test TT </a>";
                     echo "</td>";
                 echo "</tr>";
                 
