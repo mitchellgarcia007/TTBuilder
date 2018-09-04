@@ -54,6 +54,7 @@
                 $TTlaunchPage = trim($row["TTlaunchPage"]);
                 $TTlinkDestination = trim($row["TTlinkDestination"]);
                 $image = trim($row["image"]);
+                $JStag = "&lt;script src=&quot;http://ttbuilder.mitchellgarcia.net/js/js.php?id=$id&quot;&gt;&lt;/script&gt;";
 
             
                 echo "<tr>";
@@ -66,9 +67,17 @@
                         echo "<p><strong>Date Created:</strong> $dateCreated_formatted </p>";
                         echo "<p><strong>Launching Page:</strong> <a href='$TTlaunchPage' target='_blank'>$TTlaunchPage</a> </p>";
                         echo "<p><strong>Destination Page:</strong> <a href='$TTlinkDestination' target='_blank'>$TTlinkDestination</a>  </p>";
-                        echo "<p><strong>JS Tag:</strong> <figure><pre style='max-width:580px'><code>&lt;script src='http://ttbuilder.mitchellgarcia.net/js/js.php?id=$id'&gt;&lt;/script&gt;</code></pre></figure></p>";
-                        //echo "<a href='#' class='btn btn-success' role='button'> Edit TT </a>";
-                        //echo "<a href='test.php?id=$id' class='btn btn-primary' role='button' style='margin-left:10px'> Test TT </a>";
+                        echo "<p><strong>JS Tag:</strong></p>";
+                        echo "
+                        <div class='input-group' style='max-width:550px'>
+                            <input type='text' class='form-control' value='$JStag' id='myInput$id' readonly>
+                            <div class='input-group-btn'>
+                            <button class='btn btn-default' onclick='myFunction($id)'>
+                                <i class='glyphicon glyphicon-copy'></i>
+                            </button>
+                            </div>
+                        </div>
+                        ";
                     echo "</td>";
                 echo "</tr>";
                 
@@ -85,6 +94,16 @@
     </table>
 
 </div>
+
+<script>
+function myFunction(id) {
+    var copyText = document.getElementById("myInput"+id);
+    copyText.select();
+    document.execCommand("copy");
+    //alert("Copied the text: " + copyText.value);
+    alert("The link was copied to your clipboard!");
+} 
+</script>
 
 </body>
 </html>
