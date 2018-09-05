@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Test Your TT </title>
+  <title> Test Your Solution </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
 <div class="container">
   <button type="button" class="btn btn-default" style="margin-top:20px;display:none" id="mobileBackBtn">Back (Mobile Only) </button>
   <div class="jumbotron" style="margin-top:5%">
-    <h1>Test Mode</h1>      
+    <h1>Test Your Solution</h1>      
     <p>1. Please try to abandon the site</p>
   </div>
 </div>

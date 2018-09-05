@@ -26,16 +26,16 @@
 </nav>
 
 <div class="container">
-  <h3 class="text-center"> Create Your TT </h3>
+  <h3 class="text-center"> Create Your LC </h3>
     <div id="divForm">
         <form id="createTT" action="createTT.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label for=""> TT Name: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. 10% Off on All Shoes"></span> </label>
+                <label for=""> LC Name: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. 10% Off on All Shoes"></span> </label>
                 <input type="text" class="form-control" id="TTname" name="TTname" placeholder="Ex. 10% Off on All Shoes" required>
             </div>
             <br>
             <div class="form-group">
-                <label for=""> Launch TT on these Pages: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. https://www.example.com/cart.html"></span> </label>
+                <label for=""> Launch LC on these Pages: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. https://www.example.com/cart.html"></span> </label>
                 <br><br>
                 <label>Page 1 (Required)</label>
                 <input type="text" class="form-control" id="TTlaunchPage" name="TTlaunchPage" placeholder="Ex. https://www.example.com/index.html" required>
@@ -46,14 +46,14 @@
             </div>
             <br>
             <div class="form-group">
-                <label for=""> TT Link Destination: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="This is the page where you want to redirect users after clicking the CTA. Ex. https://www.example.com/checkout.html"></span> </label>
+                <label for=""> LC Link Destination: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="This is the page where you want to redirect users after clicking the CTA. Ex. https://www.example.com/checkout.html"></span> </label>
                 <input type="text" class="form-control" id="TTlinkDestination" name="TTlinkDestination" placeholder="Ex. https://www.example.com/promotions.html" required>
             </div>
             <div class="form-group">
-                <label for=""> TT Background: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Image that you want to display on the Targeted Tactic window."></span> </label>
+                <label for=""> LC Background: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Image that you want to display on the Targeted Tactic window."></span> </label>
                 <input type="file" class="form-control" name="eventImage" required>
             </div>
-            <button type="submit" class="btn btn-success" style="margin:auto;display:block"> Create TT </button>
+            <button type="submit" class="btn btn-success" style="margin:auto;display:block"> Create LC </button>
         </form>
     </div>
 </div>

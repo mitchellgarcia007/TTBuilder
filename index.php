@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>TT Builder</title>
+  <title>Solutions Builder</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -17,7 +17,8 @@
 <nav class="navbar navbar-inverse" style="border-radius:0px"> 
   <div class="container-fluid">
     <div class="navbar-header" style="width:100%">
-        <a class="navbar-brand" href="/">TT Builder</a>
+        <a class="navbar-brand" href="/"> <img src="https://www2.upsellit.com/admin/control/edit/img/nav-logo-green.png" style="display: inline;margin-right: 5px;"> Solutions Builder</a>
+        <a class="navbar-brand" href="createLCform.php" style="float:right;color:white"> Create LC </a>
         <a class="navbar-brand" href="createTTform.php" style="float:right;color:white"> Create TT </a>
         <a class="navbar-brand" href="/" style="float:right;color:white"> Home </a>
     </div>
@@ -25,7 +26,7 @@
 </nav>
 
 <div class="container">
-  <h3 class="text-center"> All TTs</h3>
+  <h3 class="text-center"> All Solutions</h3>
 
     <table class="table table-hover table-responsive" style="margin-top:50px" id="myTable">
         <thead class="hidden">
