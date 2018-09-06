@@ -10,12 +10,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $TTname = mysqli_real_escape_string($conn, $_POST["TTname"]);
     $TTlaunchPage = mysqli_real_escape_string($conn, $_POST["TTlaunchPage"]);
     $TTlinkDestination = mysqli_real_escape_string($conn, $_POST["TTlinkDestination"]);
+    $solution = mysqli_real_escape_string($conn, $_POST["solution"]);
 
     date_default_timezone_set("America/Los_Angeles");
     $dateCreated = date("Y-m-d H:i:s"); //LA time
 
-    $sql2 = " INSERT INTO TTinfo (active, dateCreated, TTname, TTlaunchPage, TTlinkDestination) 
-    VALUES (1, '$dateCreated', '$TTname', '$TTlaunchPage', '$TTlinkDestination') ";
+    $sql2 = " INSERT INTO TTinfo (active, dateCreated, TTname, TTlaunchPage, TTlinkDestination, solution) 
+    VALUES (1, '$dateCreated', '$TTname', '$TTlaunchPage', '$TTlinkDestination', '$solution') ";
     $result2 = mysqli_query( $conn, $sql2 );
     if($result2){
 

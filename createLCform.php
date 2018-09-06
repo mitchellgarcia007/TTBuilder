@@ -29,6 +29,7 @@
   <h3 class="text-center"> Create Your LC </h3>
     <div id="divForm">
         <form id="createTT" action="createTT.php" method="POST" enctype="multipart/form-data">
+        <input type="text" class="hidden" id="solution" name="solution" value="LC" required>
             <div class="form-group">
                 <label for=""> LC Name: <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" title="Ex. 10% Off on All Shoes"></span> </label>
                 <input type="text" class="form-control" id="TTname" name="TTname" placeholder="Ex. 10% Off on All Shoes" required>
