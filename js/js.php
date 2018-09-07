@@ -25,9 +25,10 @@
         $TTlaunchPage = trim($row["TTlaunchPage"]);
         $TTlinkDestination = trim($row["TTlinkDestination"]);
         $image = trim($row["image"]);
+        $solution = trim($row["solution"]);
     }
 
-    // Verufy that TT is active
+    // Verify that TT is active
     if($active != 1){
         die("TT not active");
     }
@@ -76,11 +77,48 @@ $(document).ready(function(){
     }
 
     function main(){
+
+        var modal = [
+            '<div id="myModal" class="modal fade" role="dialog">',
+                '<div class="modal-dialog">',
+                
+                '<div class="modal-content">',
+                    '<div class="modal-header" style="border-bottom:unset">',
+                        '<button type="button" class="close" data-dismiss="modal">&times;</button>',
+                    '</div>',
+                    '<div class="modal-body">',
+                        '<img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:auto">',
+                    '</div>',
+                    
+                    // TT footer
+                    '<div class="modal-footer TTfooter <?php if($solution != "TT"){echo "hidden";}?>" style="border-top:unset">',
+                        '<a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a>',
+                    '</div>',
+
+                    // LC footer
+                    '<div class="modal-footer LCfooter <?php if($solution != "LC"){echo "hidden";}?>" style="border-top:unset;text-align:center;font-size:9px">',
+                    '   <form>',
+                            '<div class="input-group" style="max-width:400px;margin:auto">',
+                                '<input type="text" class="form-control" placeholder="Enter Your Email" required>',
+                                '<div class="input-group-btn">',
+                                    '<button class="btn btn-success" type="submit"> Submit <i class="glyphicon glyphicon-send"></i></button>',
+                                '</div>',
+                            '</div>',
+                            'By providing your email address you are consenting to the terms of this privacy policy.',
+                        '</form>',
+                    '</div>',      
+                      
+                '</div>',
+
+                '</div>',
+            '</div>',
+        ].join('');
+
         // Mobile Modal
         $("#mobileBackBtn").click(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
-                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:auto"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a></div></div></div></div>');
+                $("body").append(modal);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
@@ -97,7 +135,7 @@ $(document).ready(function(){
         $(".usi_top_div").mouseenter(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
-                $("body").append('<div id="myModal" class="modal fade" role="dialog"><div class="modal-dialog"><div class="modal-content"><div class="modal-header" style="border-bottom:unset"><button type="button" class="close" data-dismiss="modal">&times;</button></div><div class="modal-body"><img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:auto"></div><div class="modal-footer" style="border-top:unset"><a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a></div></div></div></div>');
+                $("body").append(modal);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
@@ -108,8 +146,16 @@ $(document).ready(function(){
                 console.log("suppressing modal");
             }
         });
+
+        // Store emails
+
+
     }
 
     setTimeout(main, 1000);
         
 });
+
+
+
+
