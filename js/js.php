@@ -76,6 +76,11 @@ $(document).ready(function(){
         return "";
     }
 
+    
+
+
+
+
     function main(){
 
         var modal = [
@@ -89,24 +94,25 @@ $(document).ready(function(){
                     '<div class="modal-body">',
                         '<img src="http://ttbuilder.mitchellgarcia.net/img/<?php echo $image;?>" style="display:block;margin:auto;max-width:100%;height:auto">',
                     '</div>',
+
                     
                     // TT footer
                     '<div class="modal-footer TTfooter <?php if($solution != "TT"){echo "hidden";}?>" style="border-top:unset">',
                         '<a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a>',
                     '</div>',
 
+
                     // LC footer
                     '<div class="modal-footer LCfooter <?php if($solution != "LC"){echo "hidden";}?>" style="border-top:unset;text-align:center;font-size:9px">',
-                    '   <form>',
                             '<div class="input-group" style="max-width:400px;margin:auto">',
-                                '<input type="text" class="form-control" placeholder="Enter Your Email" required>',
+                                '<input type="text" class="form-control usi_lc_email" placeholder="Enter Your Email" required>',
                                 '<div class="input-group-btn">',
-                                    '<button class="btn btn-success" type="submit"> Submit <i class="glyphicon glyphicon-send"></i></button>',
+                                    '<button class="btn btn-success usi_lc_btn"> Submit <i class="glyphicon glyphicon-send"></i></button>',
                                 '</div>',
                             '</div>',
                             'By providing your email address you are consenting to the terms of this privacy policy.',
-                        '</form>',
-                    '</div>',      
+                    '</div>',     
+
                       
                 '</div>',
 
@@ -123,6 +129,34 @@ $(document).ready(function(){
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
 
+                // AJAX LC emails data
+                $(".usi_lc_btn").click(function(){
+                    var usi_lc_email = $(".usi_lc_email").val();
+                    if(usi_lc_email == "" || usi_lc_email == null){
+                        alert("Please enter your email address.");
+                        return false;
+                    }
+                    $.ajax({ 
+                        url: "/js/emailsData.php",
+                        type: 'POST',
+                        data: { usi_lc_id: <?php echo $id; ?>,
+                            usi_lc_email: usi_lc_email
+                        },
+                        success: function(data){
+                            if(data == "Added"){
+                                console.log("Added");
+                                $(".usi_lc_email").val("");
+                                $('#myModal').modal('hide');
+                            }
+                            else{
+                                console.log(data);
+                                $(".usi_lc_email").val("");
+                                $('#myModal').modal('hide');
+                            }
+                        }
+                    });
+                });
+
                 console.log("lunching modal");
             }
             else{
@@ -135,10 +169,55 @@ $(document).ready(function(){
         $(".usi_top_div").mouseenter(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
+                //new modal
+                /* https://www.w3schools.com/howto/howto_css_modals.asp
+                var usi_modal_div = document.createElement("div");
+                usi_modal_div.className = "block";
+                usi_modal_div.style.position = "fixed";
+                usi_modal_div.style.z-index = "1";
+                usi_modal_div.style.padding-top = "100px";
+                usi_modal_div.style.left = "0";
+                usi_modal_div.style.top = "0";
+                usi_modal_div.style.width = "100%";
+                usi_modal_div.style.height = "100%";
+                usi_modal_div.style.overflow = "auto";
+                usi_modal_div.style.background-color = "rgb(0,0,0)";
+                usi_modal_div.style.background-color = "rgba(0,0,0,0.4)";            
+                document.body.appendChild(usi_modal_div);
+                */
+
                 $("body").append(modal);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
+
+                // AJAX LC emails data
+                $(".usi_lc_btn").click(function(){
+                    var usi_lc_email = $(".usi_lc_email").val();
+                    if(usi_lc_email == "" || usi_lc_email == null){
+                        alert("Please enter your email address.");
+                        return false;
+                    }
+                    $.ajax({ 
+                        url: "/js/emailsData.php",
+                        type: 'POST',
+                        data: { usi_lc_id: <?php echo $id; ?>,
+                            usi_lc_email: usi_lc_email
+                        },
+                        success: function(data){
+                            if(data == "Added"){
+                                console.log("Added");
+                                $(".usi_lc_email").val("");
+                                $('#myModal').modal('hide');
+                            }
+                            else{
+                                console.log(data);
+                                $(".usi_lc_email").val("");
+                                $('#myModal').modal('hide');
+                            }
+                        }
+                    });
+                });
 
                 console.log("lunching modal");
             }

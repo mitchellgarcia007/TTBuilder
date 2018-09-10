@@ -70,6 +70,9 @@
                         echo "<p><strong>Date Created:</strong> $dateCreated_formatted </p>";
                         echo "<p><strong>Launching Page:</strong> <a href='$TTlaunchPage' target='_blank'>$TTlaunchPage</a> </p>";
                         echo "<p><strong>Destination Page:</strong> <a href='$TTlinkDestination' target='_blank'>$TTlinkDestination</a>  </p>";
+                        if($solution == "LC"){
+                            echo "<p><strong>Emails Collected:</strong> <a href='emailsData.php?lc_id=$id'>View</a> </p>";
+                        }
                         echo "<p><strong>JS Tag:</strong></p>";
                         echo "
                         <div class='input-group' style='max-width:550px'>
