@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if($_SESSION["login"] != "yes"){
+        header('Location: /login.php');
+    }
+    
     include $_SERVER['DOCUMENT_ROOT']."/connection.php";
 ?>
 

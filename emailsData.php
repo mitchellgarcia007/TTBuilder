@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if($_SESSION["login"] != "yes"){
+        header('Location: /login.php');
+    }
+    
     include $_SERVER['DOCUMENT_ROOT']."/connection.php";
     
     $lc_id = $_GET["lc_id"];
@@ -30,10 +35,12 @@
 <div class="container">
   <h3 class="text-center"> Emails Data</h3>
 
+  <a href="dump.php?lc_id=<?php echo $lc_id;?>" class="btn btn-info" role="button" target="_blank">Download Emails List</a>
+
     <table class="table table-hover table-responsive" style="margin-top:50px" id="myTable">
         <thead>
         <tr>
-            <th style='width:40px'>Number </th>
+            <th style='width:40px'> # </th>
             <th style='width:40px'> Date/Time </th>
             <th> Emails </th>
         </tr>

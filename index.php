@@ -1,4 +1,9 @@
 <?php
+    session_start();
+    if($_SESSION["login"] != "yes"){
+        header('Location: /login.php');
+    }
+
     include $_SERVER['DOCUMENT_ROOT']."/connection.php";
 ?>
 
@@ -71,7 +76,7 @@
                         echo "<p><strong>Launching Page:</strong> <a href='$TTlaunchPage' target='_blank'>$TTlaunchPage</a> </p>";
                         echo "<p><strong>Destination Page:</strong> <a href='$TTlinkDestination' target='_blank'>$TTlinkDestination</a>  </p>";
                         if($solution == "LC"){
-                            echo "<p><strong>Emails Collected:</strong> <a href='emailsData.php?lc_id=$id'>View</a> </p>";
+                            echo "<p><strong>Emails Collected:</strong> <a href='emailsData.php?lc_id=$id'> View List </a> </p>";
                         }
                         echo "<p><strong>JS Tag:</strong></p>";
                         echo "
