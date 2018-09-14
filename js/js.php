@@ -26,6 +26,8 @@
         $TTlinkDestination = trim($row["TTlinkDestination"]);
         $image = trim($row["image"]);
         $solution = trim($row["solution"]);
+        $boostbar = trim($row["boostbar"]);
+        $boostbarText = trim($row["boostbarText"]);
     }
 
     // Verify that TT is active
@@ -76,12 +78,22 @@ $(document).ready(function(){
         return "";
     }
 
-    
+
+
 
 
 
 
     function main(){
+
+        
+
+        var boostbar = [
+            '<div id="usi_boostbar" style="font-size:25px;background-color:#222222;color:white;padding:10px 20px 20px 20px;text-align:center;width:100%;border:1px solid transparent;height:auto;position:absolute;bottom:0">',
+                '<div id="closeBoostbarDiv" style="border:1px solid transparent;display:block;width:100%;cursor:pointer;text-align:right;padding-right:30px"> X </div>',
+                '<div style="border:1px solid transparent;display:block;width:100%"><span><?php echo $boostbarText;?></span></div>',
+            '</div>',           
+        ].join('');
 
         var modal = [
             '<div id="myModal" class="modal fade" role="dialog">',
@@ -98,7 +110,8 @@ $(document).ready(function(){
                     
                     // TT footer
                     '<div class="modal-footer TTfooter <?php if($solution != "TT"){echo "hidden";}?>" style="border-top:unset">',
-                        '<a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a>',
+                        //'<a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a>',
+                        '<button type="button" class="btn btn-success btn-block btn-lg" id="btnSubmit"> Go to Promotion </button>',
                     '</div>',
 
 
@@ -120,11 +133,14 @@ $(document).ready(function(){
             '</div>',
         ].join('');
 
+        
+
         // Mobile Modal
         $("#mobileBackBtn").click(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
                 $("body").append(modal);
+                $("body").append(boostbar);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
@@ -187,9 +203,21 @@ $(document).ready(function(){
                 */
 
                 $("body").append(modal);
+                $("body").append(boostbar);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
+
+                document.getElementById("closeBoostbarDiv").onclick = function() {closeBoostbarFunction()};
+                function closeBoostbarFunction() {
+                    var usi_boostbar = document.getElementById("usi_boostbar");
+                    usi_boostbar.style.display = "none";
+                }
+
+                document.getElementById("btnSubmit").onclick = function() {btnSubmitFunction()};
+                function btnSubmitFunction() {
+                    window.location.href = "<?php echo $TTlinkDestination;?>";
+                }
 
                 // AJAX LC emails data
                 $(".usi_lc_btn").click(function(){
