@@ -111,7 +111,7 @@ $(document).ready(function(){
                     // TT footer
                     '<div class="modal-footer TTfooter <?php if($solution != "TT"){echo "hidden";}?>" style="border-top:unset">',
                         //'<a href="<?php echo $TTlinkDestination;?>" class="btn btn-success btn-block btn-lg" role="button">Go to Promotion</a>',
-                        '<button type="button" class="btn btn-success btn-block btn-lg" id="btnSubmit"> Go to Promotion </button>',
+                        '<button type="button" class="btn btn-success btn-block btn-lg" id="usi_tt_btn"> Go to Promotion </button>',
                     '</div>',
 
 
@@ -133,14 +133,22 @@ $(document).ready(function(){
             '</div>',
         ].join('');
 
-        
+        if(getCookie("usi_cookie_boostbar") == 1){
+            $("body").append(boostbar);
+
+            document.getElementById("closeBoostbarDiv").onclick = function() {closeBoostbarFunction()};
+            function closeBoostbarFunction() {
+                var usi_boostbar = document.getElementById("usi_boostbar");
+                usi_boostbar.style.display = "none";
+            }
+        }
 
         // Mobile Modal
         $("#mobileBackBtn").click(function(){
             if(getCookie("usi_cookie_launched") != 1){
 
                 $("body").append(modal);
-                $("body").append(boostbar);
+                //$("body").append(boostbar);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
@@ -203,19 +211,16 @@ $(document).ready(function(){
                 */
 
                 $("body").append(modal);
-                $("body").append(boostbar);
+                //$("body").append(boostbar);
 
                 $("#myModal").modal({show: "true"}); 
                 //document.cookie = "usi_cookie_launched=1";
 
-                document.getElementById("closeBoostbarDiv").onclick = function() {closeBoostbarFunction()};
-                function closeBoostbarFunction() {
-                    var usi_boostbar = document.getElementById("usi_boostbar");
-                    usi_boostbar.style.display = "none";
-                }
+                
 
-                document.getElementById("btnSubmit").onclick = function() {btnSubmitFunction()};
+                document.getElementById("usi_tt_btn").onclick = function() {btnSubmitFunction()};
                 function btnSubmitFunction() {
+                    <?php if($boostbar){ echo 'document.cookie = "usi_cookie_boostbar=1";'; }?>
                     window.location.href = "<?php echo $TTlinkDestination;?>";
                 }
 
@@ -237,11 +242,13 @@ $(document).ready(function(){
                                 console.log("Added");
                                 $(".usi_lc_email").val("");
                                 $('#myModal').modal('hide');
+                                <?php if($boostbar){ echo 'document.cookie = "usi_cookie_boostbar=1";'; }?>
+                                window.location.href = "<?php echo $TTlinkDestination;?>";
                             }
                             else{
                                 console.log(data);
-                                $(".usi_lc_email").val("");
-                                $('#myModal').modal('hide');
+                                alert("Error, check console log.");
+                                //return false;
                             }
                         }
                     });
