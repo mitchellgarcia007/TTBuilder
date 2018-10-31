@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Test Your Solution </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <img src="bodyImg5.png" style="width:100%">
+  
+
+    <div id="usi_boostbar" class="hidden" style="font-size:22px;background-color:#8cc63f;padding:10px 20px 0px 20px;text-align:center;width:103%;border:1px solid transparent;height:auto;position:fixed;bottom:0">
+      <div style="border:1px solid transparent;display:block;width:100%;cursor:pointer;text-align:right;padding-right:10px;color:white;font-weight:300;margin-bottom:7px"> <span style="color:white;float:left;font-size:23px;margin-left:30px">Sign Up For Free Demo </span> <span id="closeBoostbarDiv" >X</span> </div>
+      <div style="border:1px solid transparent;display:block;width:100%;color:black">
+        <div class="input-group" style="max-width:400px;margin:auto">
+          <input class="form-control usi_lc_email" placeholder="Enter Your Email" required="" type="text">
+          <div class="input-group-btn">
+            <button class="btn btn-primary usi_lc_btn" style="background-color:#50c38a;border-color:#50c38a"> Send <i class="glyphicon glyphicon-send"></i></button>
+          </div>
+      </div> 
+      <p style="font-size:8px;color:white">By providing your email address you are consenting to the terms of this privacy policy.</p>
+    </div>
+    </div>
+
+<style>
+body {
+  height:6000px;
+  /*
+  background-image: url("bodyImg5.png");
+  background-color: #ffffff;
+  background-repeat: no-repeat, repeat;
+  */
+}
+@media only screen and (max-width: 500px) {
+  #mobileBackBtn {
+    display: block !important;
+  }
+}
+</style>
+<script>
+
+var scrollHeight = document.body.scrollHeight;
+    whenToLaunch = scrollHeight/2;
+
+document.getElementById("closeBoostbarDiv").onclick = function() { closeBoostbarFunction() };
+
+function closeBoostbarFunction() {
+  var usi_boostbar = document.getElementById("usi_boostbar");
+  usi_boostbar.style.display = "none";
+}
+
+
+// JQuery
+$(document).ready(function(){
+
+  $(window).scroll(function(){
+      var scroll = $(window).scrollTop();
+      if (scroll > whenToLaunch) {
+        $("#usi_boostbar").removeClass("hidden");
+      }
+      else{
+        $("#usi_boostbar").addClass("hidden");
+      }
+    });
+
+  });
+
+
+</script>
+</body>
+</html>
